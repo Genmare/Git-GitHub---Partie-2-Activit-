@@ -30,7 +30,7 @@ function creerElementLien(lien) {
 }
 
 var contenuElt = document.getElementById("contenu");
-ajaxGet("https://oc-jswebsrv.herokuapp.com/api/liens", function (lien) {
+ajaxGet("https://oc-jswebsrv.hkuapp.com/api/liens", function (lien) {
   // Parcours de la liste des liens et ajout d'un élément au DOM pour chaque lien
   var listeLiens = JSON.parse(lien);
   listeLiens.forEach(function (lien) {
