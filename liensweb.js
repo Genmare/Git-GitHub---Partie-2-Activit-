@@ -24,40 +24,40 @@ var listeLiens = [
     }
 ];
 
-// Crée et renvoie un élément DOM affichant les données d'un lien
-// Le paramètre lien est un objet JS représentant un lien
-function creerElementLien(lien) {
-    var titreLien = document.createElement("a");
-    titreLien.href = lien.url;
-    titreLien.style.color = "#428bca";
-    titreLien.style.textDecoration = "none";
-    titreLien.style.marginRight = "5px";
-    titreLien.appendChild(document.createTextNode(lien.titre));
+// TODO : compléter ce fichier pour ajouter les liens à la page web
 
-    var urlLien = document.createElement("span");
-    urlLien.appendChild(document.createTextNode(lien.url));
 
-    // Cette ligne contient le titre et l'URL du lien
-    var ligneTitre = document.createElement("h4");
-    ligneTitre.style.margin = "0px";
-    ligneTitre.appendChild(titreLien);
-    ligneTitre.appendChild(urlLien);
+listeLiens.forEach(function (listeLiens) {// Boucle pour chaque item
+    
+    var containerElt = document.createElement("div"); // Construction du container
 
-    // Cette ligne contient l'auteur
-    var ligneDetails = document.createElement("span");
-    ligneDetails.appendChild(document.createTextNode("Ajouté par " + lien.auteur));
+    var lienElt = document.createElement("a"); // Construction du lien
+    lienElt.href = listeLiens.url // Ajout du lien en paramètre "href"
+    lienElt.style.textDecoration = "none"; // Style du lien
+    lienElt.style.color = "black"; // Style du lien
 
-    var divLien = document.createElement("div");
-    divLien.classList.add("lien");
-    divLien.appendChild(ligneTitre);
-    divLien.appendChild(ligneDetails);
+    var titreElt = document.createElement("h2"); // Construction du titre pour le <h2>
+    titreElt.textContent = listeLiens.titre; // Définition du contenu du titre
+    titreElt.style.color = "#428bca"; // Style du titre
+    titreElt.style.display = "inline"; // Style du titre
+    titreElt.style.paddingRight = "15px"; // Style du titre
 
-    return divLien;
-}
+    var urlElt = document.createElement("span"); // Construction de la <span> pour l'url
+    urlElt.textContent = listeLiens.url; // Définition du contenu de la <span>
 
-var contenu = document.getElementById("contenu");
-// Parcours de la liste des liens et ajout d'un élément au DOM pour chaque lien
-listeLiens.forEach(function (lien) {
-    var elementLien = creerElementLien(lien);
-    contenu.appendChild(elementLien);
+    var auteurElt = document.createElement("p");// Construction de du <p> pour l'auteur
+    var intro = "Ajouté par " // Création d'une variable pour stocker du texte à ajouter plus loin
+    auteurElt.textContent =  intro + listeLiens.auteur; // Définition du contenu du <p> en ajoutant les deux variables
+
+    lienElt.appendChild(titreElt); // Ajout du titre <h2> au lien <a> pour le rendre clicable
+    lienElt.appendChild(urlElt); // Ajout de l'url <span> au lien <a> pour le rendre clicable
+    containerElt.appendChild(lienElt); // Ajout du lien <a> au container
+    containerElt.appendChild(auteurElt); // Ajout de l'auteur <p> au container
+    document.getElementById("contenu").appendChild(containerElt); // Ajout du container à la div qui à l'id "contenu"
+
+    containerElt.classList.add("lien");// Ajout de la class au container à la fin de la boucle car la variable containerElt n'existe pas en dehors de la boucle
 });
+
+
+
+
